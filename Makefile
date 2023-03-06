@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 16:12:34 by lmdrn             #+#    #+#              #
-#    Updated: 2023/03/06 16:58:13 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/03/06 19:56:07 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,19 @@ NAME		= fractol
 
 CC 			= gcc
 
-CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address -Imlx
 
-MLXFLAGS	= -L./lib/mlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS 	= -L ${LIB} -lmlx -framework OpenGL -framework AppKit
 
 RM			= rm -rf
 
-LIB 		= ./lib/mlx
+LIB 		= ./mlx/
 
 ${NAME}:	${OBJS}
 			@echo "$(RESET)$(ORANGE)ASSEMBLING $(NAME)$(RESET)"
-			make -C lib/mlx
+			@$(MAKE) -C $(LIB)
 			${CC} ${CFLAGS} ${OBJS} ${MLXFLAGS} -o ${NAME}
+			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
 			@echo "$(RESET)$(GREEN)$(NAME) HAS ASSEMBLED ✓$(RESET)"
 
 all:		header $(NAME)
@@ -50,14 +51,18 @@ header:
 			@echo "$(BLUE)         |_/\_____/\_|  |_/\__,_|_|\_\___|......I'm so badass wesh $(RESET)"
 			@echo "$(BLUE)                           $(RESET)"
 
+test:		all
+			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
+			./${NAME}
+		
+
 clean:		
 			@echo "$(RESET)$(ORANGE)I'M CLEANING OUT MY CLOSET...$(RESET)"
-			make clean -C ${LIB}
+			@$(MAKE) -C $(LIB) clean
 			@echo "$(RESET)$(GREEN)CLEANED ✓$(RESET)"
 
 fclean:		clean
 			@echo "$(RESET)$(ORANGE)ONE MORE TIME...$(RESET)"
-			rm -f ./lib/mlx/mlx.a
 			${RM} ${OBJS} ${NAME}
 			@echo "$(RESET)$(GREEN)ALL CLEANED ✓✓$(RESET)"
 
