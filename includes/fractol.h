@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 14:01:07 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/04/16 14:08:43 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/04/16 15:34:51 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../mlx/mlx.h"
 # include "keycode.h"
+# include "colors.h"
 # include <stdlib.h>
 
 /* mlx basics */
@@ -35,5 +36,10 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 }		t_mlx;
+
+/* prototype de fonctions */
+
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	mandelbrot(t_mlx *mlx);
 
 #endif

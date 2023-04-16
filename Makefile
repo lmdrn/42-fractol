@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 16:12:34 by lmdrn             #+#    #+#              #
-#    Updated: 2023/03/06 19:56:07 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/04/16 15:38:18 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ ORANGE 		= \033[38;5;215m
 GREEN 		= \033[38;5;82m
 RESET 		= \033[0m
 
-SRCS 		= srcs/init.c
+SRCS 		= srcs/init.c \
+		  srcs/mandelbrot.c
 
 OBJS 		= ${SRCS:.c=.o}
 
