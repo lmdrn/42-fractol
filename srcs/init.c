@@ -1,56 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 16:33:30 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/04/16 15:54:29 by lmedrano         ###   ########.fr       */
+/*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
+/*   Updated: 2023/05/12 15:22:12 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-/* function to close window when pressinf ESC */
-/* not sure about mlx_destroy_window, */
-/* should I keep it ? */
-int	close(int keycode, t_mlx *mlx)
+int	ft_strncmp(const char *s1, const char *s2, size_t nbytes)
 {
-	if (keycode == KEY_ESC)
+	size_t i;
+	
+	i = 0;
+	while ((i < nbytes) && ((s1[i] != '\0') || (s2[i] != '\0')))
 	{
-		mlx_destroy_image(mlx->mlx, mlx->img);
-		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-		exit(0);
+		if (s1[i] > s2[i])
+			return ((((unsigned char *)s1)[i]) - ((unsigned char *)s2)[i]);
+		if (s1[i] < s2[i])
+			return ((((unsigned char *)s1)[i]) - ((unsigned char *)s2)[i]);
+		i++;
 	}
 	return (0);
 }
 
-/* function to print a pixel on the screen */
-void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
+void	fractal_type(char *name)
 {
-	char	*dst;
+	if(!ft_strncmp(name, "Mandelbrot", 10)
+			mandelbrot();
+}
 
-	if (x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT)
+int main(int ac, char **av)
+{
+	t_fractal	fractal;
+	if (ac == 2 && fractal_type(av[1]))
 	{
-		dst = mlx->buffer + (y * mlx->line_length + x
-				* (mlx->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
-}
+	
+	} else
+		write(1, "NOPE!<\n", 6);
+	return (0);
 
-int	main(void)
-{
-	t_mlx	mlx;
-
-	mandelbrot(&mlx);
-	mlx.mlx = mlx_init();
-	mlx.mlx_win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, WINDOW_TITLE);
-	mlx.img = mlx_new_image(mlx.mlx, 500, 500);
-	mlx.buffer = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel,
-			&mlx.line_length, &mlx.endian);
-	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.img, 0, 0);
-	mlx_key_hook(mlx.mlx_win, close, &mlx);
-	mlx_hook(mlx.mlx_win, ON_DESTROY, 0, close, &mlx);
-	mlx_loop(mlx.mlx);
-}

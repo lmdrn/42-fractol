@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.h                                           :+:      :+:    :+:   */
+/*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 15:23:20 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/04/16 15:24:24 by lmedrano         ###   ########.fr       */
+/*   Created: 2023/05/12 15:22:32 by lmedrano          #+#    #+#             */
+/*   Updated: 2023/05/15 08:44:12 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#include "../includes/fractol.h"
 
-# define RED 0xFF0000
+t_complex	init_complex(double real, double imgnr)
+{
+	t_complex	complex;
+	complex.real = real;
+	complex.imgnr = imgnr;
+	return (complex);
+}
 
-#endif
+void	mandelbrot(t_fractal *fractal)
+{
+	t_complex	z;
+	t_complex	tmp;
+	int		iterations;
+
+	iterations = 0;
+	z = init_complex(fractal->c.real, fractal->c.imgnr);
+}
+
+
