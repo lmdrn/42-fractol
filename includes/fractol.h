@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/05/12 15:07:11 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:32:12 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 # define WIDTH 500
 # define HEIGHT 500
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <math.h>
-#include "../mlx/mlx.h"
-/* #include <stdint.h> */
-/* #include <string.h> */
-/* #include <inttypes.h> */
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
+# include "../mlx/mlx.h"
 
 typedef struct s_complex
 {
@@ -31,30 +28,21 @@ typedef struct s_complex
 	double	imgnr;
 }		t_complex;
 
-typedef struct s_image
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}		t_image;
-
 typedef struct s_fractal
 {
-	void		*mlx;
-	void		*mlx_win;
-	t_image		image;
+	void			*mlx;
+	void			*mlx_win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 	unsigned int	max_iter;
-	t_complex	min;
-	t_complex	max;
-	t_complex	factor;
-	t_complex	c;
-	t_complex	k;
-	char		julia_block;
-	unsigned char	color_shift;
-	unsigned char	bright_shift;
-	unsigned int	((*formula)(struct	s_fractal *fractal));
+	t_complex		min;
+	t_complex		max;
+	t_complex		factor;
+	t_complex		c;
+	t_complex		k;
 }		t_fractal;
 
 #endif

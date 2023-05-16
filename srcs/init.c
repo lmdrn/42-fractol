@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/05/12 15:22:12 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:44:48 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t nbytes)
+void	my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color)
 {
-	size_t i;
-	
-	i = 0;
-	while ((i < nbytes) && ((s1[i] != '\0') || (s2[i] != '\0')))
-	{
-		if (s1[i] > s2[i])
-			return ((((unsigned char *)s1)[i]) - ((unsigned char *)s2)[i]);
-		if (s1[i] < s2[i])
-			return ((((unsigned char *)s1)[i]) - ((unsigned char *)s2)[i]);
-		i++;
-	}
+	char	*dst;
+
+	dst = fractal->addr + (y * fractal->line_length + x
+			* (fractal->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+int	close_window(int keycode, t_fractal *fractal)
+{
+	if (keycode == 53)
+		mlx_destroy_window(fractal->mlx, fractal->mlx_win);
 	return (0);
 }
 
-void	fractal_type(char *name)
+int	main(void)
 {
-	if(!ft_strncmp(name, "Mandelbrot", 10)
-			mandelbrot();
+	void		*mlx;
+	void		*mlx_win;
+	t_fractal	img;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FRACT'OL");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+			&img.line_length, &img.endian);
+	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_hook(img.mlx_win, 2, 1l << 0, close_window, &img);
+	mlx_loop(img.mlx);
 }
-
-int main(int ac, char **av)
-{
-	t_fractal	fractal;
-	if (ac == 2 && fractal_type(av[1]))
-	{
-	
-	} else
-		write(1, "NOPE!<\n", 6);
-	return (0);
-
