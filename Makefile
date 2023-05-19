@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 15:10:04 by lmedrano          #+#    #+#              #
-#    Updated: 2023/05/16 16:28:10 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/05/19 18:08:06 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ GREEN 		= \033[38;5;82m
 RESET 		= \033[0m
 
 SRCS 		= srcs/init.c \
-		  	srcs/fractals.c
+		  	srcs/fractals.c \
+			srcs/colors.c \
+			srcs/hooks.c 
 
 OBJS 		= ${SRCS:.c=.o}
 
@@ -54,7 +56,7 @@ header:
 
 test:		all
 			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
-			./${NAME}
+			./${NAME} burning ship
 		
 
 clean:		

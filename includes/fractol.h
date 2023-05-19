@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/05/16 16:32:12 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:06:51 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,17 @@ typedef struct s_fractal
 	t_complex		c;
 	t_complex		k;
 }		t_fractal;
+
+/* PROTOTYPES DE FUNCTIONS */
+
+/* colors */
+int		create_trgb(int t, int r, int g, int b);
+void	img_pixel_put(t_fractal *image, int x, int y, int color);
+void	render_bg(t_fractal *image, int color);
+int		set_colors(int color);
+
+/* hooks */
+int		close_esc(int keycode, t_fractal *fractal);
+int		close_btn(t_fractal *fractal);
 
 #endif
