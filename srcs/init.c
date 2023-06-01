@@ -6,13 +6,13 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/05/19 18:08:06 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:24:12 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	init_window(int color)
+void	init_window(void)
 {
 	int			x;
 	int			y;
@@ -25,7 +25,7 @@ void	init_window(int color)
 	image.img = mlx_new_image(image.mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	render_bg(&image, color);
+	render_bg(&image, set_colors(1));
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
 	mlx_key_hook(image.mlx_win, close_esc, &image);
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
@@ -66,16 +66,17 @@ void	no_input(void)
 }
 
 /* mlx_new_image is fct used x mem allocation x img; */
+/* TODO: Create algo for each fractal and replace set_colors(); */
 int	main(int ac, char **av)
 {
 	if (ac == 2)
 	{
 		if (ft_strncmp(av[1], "mandelbrot", 10) == 0)
-			init_window(set_colors(1));
+			init_window();
 		else if (ft_strncmp(av[1], "julia", 5) == 0)
-			init_window(set_colors(2));
+			init_window();
 		else if (ft_strncmp(av[1], "burning ship", 12) == 0)
-			init_window(set_colors(3));
+			init_window();
 		else
 		{
 			fractal_typo();
@@ -85,7 +86,7 @@ int	main(int ac, char **av)
 	{
 		if ((ft_strncmp(av[1], "burning", 7) == 0)
 			&& (ft_strncmp(av[2], "ship", 4) == 0))
-			init_window(set_colors(3));
+			init_window();
 	}
 	else
 	{

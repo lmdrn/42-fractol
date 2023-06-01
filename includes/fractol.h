@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/05/19 18:06:51 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:24:11 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ typedef struct s_fractal
 	int				line_length;
 	int				endian;
 	unsigned int	max_iter;
+	int				is_in;
 	t_complex		min;
 	t_complex		max;
 	t_complex		factor;
 	t_complex		c;
-	t_complex		k;
 }		t_fractal;
 
 /* PROTOTYPES DE FUNCTIONS */
@@ -56,5 +56,9 @@ int		set_colors(int color);
 /* hooks */
 int		close_esc(int keycode, t_fractal *fractal);
 int		close_btn(t_fractal *fractal);
+
+/* fractals */
+void	mandelbrot_init(t_fractal *fractal);
+void	mandelbrot(t_fractal *fractal);
 
 #endif

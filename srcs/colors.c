@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/05/19 18:06:24 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:24:09 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,17 @@ void	render_bg(t_fractal *image, int color)
 	int	j;
 
 	i = 0;
+	mandelbrot_init(image);
 	while (i < HEIGHT)
 	{
 		j = 0;
 		while (j < WIDTH)
 		{
-			img_pixel_put(image, j, i, color);
+			mandelbrot(image);
 			j++;
 		}
+		if (image->is_in == 1)
+			img_pixel_put(image, j, i, color);
 		i++;
 	}
 }
