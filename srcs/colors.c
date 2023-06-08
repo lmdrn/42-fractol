@@ -6,12 +6,11 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/01 17:24:09 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/08 18:17:57 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
 /* convert colors from rgb to hexadecimal */
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -39,37 +38,35 @@ void	img_pixel_put(t_fractal *image, int x, int y, int color)
 	}
 }
 
-void	render_bg(t_fractal *image, int color)
+void	render_mandelbrot(t_fractal *image)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	mandelbrot_init(image);
-	while (i < HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
+	/* y = 0; */
+	/* mandelbrot_init(image); */
+	/* while (y < HEIGHT) */
+	/* { */
+	/* 	x = 0; */
+	/* 	while (x < WIDTH) */
+	/* 	{ */
 			mandelbrot(image);
-			j++;
-		}
-		if (image->is_in == 1)
-			img_pixel_put(image, j, i, color);
-		i++;
-	}
+			/* x++; */
+		/* } */
+		/* y++; */
+	/* } */
 }
 
 int	set_colors(int color)
 {
 	int			baby_blue;
 	int			lavender;
+	int			white;
 	int			pastel_green;
 
 	if (color == 1)
 		return (baby_blue = create_trgb(0, 173, 193, 255));
 	else if (color == 2)
 		return (lavender = create_trgb(0, 218, 187, 255));
+	else if (color == 3)
+		return (white = create_trgb(0, 255, 255, 255));
 	else
 		return (pastel_green = create_trgb(0, 201, 237, 191));
 }

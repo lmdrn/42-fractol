@@ -6,13 +6,13 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/01 17:24:12 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:53:24 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	init_window(void)
+void	init_window(int fractal)
 {
 	int			x;
 	int			y;
@@ -25,10 +25,14 @@ void	init_window(void)
 	image.img = mlx_new_image(image.mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	render_bg(&image, set_colors(1));
+	if (fractal == 1)
+		render_mandelbrot(&image);
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
+	printf("coucouf\n");
 	mlx_key_hook(image.mlx_win, close_esc, &image);
+	printf("coucoug\n");
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
+	printf("coucouh\n");
 	mlx_loop(image.mlx);
 }	
 
@@ -72,11 +76,11 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		if (ft_strncmp(av[1], "mandelbrot", 10) == 0)
-			init_window();
+			init_window(1);
 		else if (ft_strncmp(av[1], "julia", 5) == 0)
-			init_window();
+			init_window(0);
 		else if (ft_strncmp(av[1], "burning ship", 12) == 0)
-			init_window();
+			init_window(0);
 		else
 		{
 			fractal_typo();
@@ -86,7 +90,7 @@ int	main(int ac, char **av)
 	{
 		if ((ft_strncmp(av[1], "burning", 7) == 0)
 			&& (ft_strncmp(av[2], "ship", 4) == 0))
-			init_window();
+			init_window(0);
 	}
 	else
 	{

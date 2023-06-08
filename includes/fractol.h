@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/01 17:24:11 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:57:50 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 # define FRACTOL_H
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 200
+# define HEIGHT 200
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <math.h>
 # include "../mlx/mlx.h"
 
@@ -50,7 +51,7 @@ typedef struct s_fractal
 /* colors */
 int		create_trgb(int t, int r, int g, int b);
 void	img_pixel_put(t_fractal *image, int x, int y, int color);
-void	render_bg(t_fractal *image, int color);
+void	render_mandelbrot(t_fractal *image);
 int		set_colors(int color);
 
 /* hooks */
