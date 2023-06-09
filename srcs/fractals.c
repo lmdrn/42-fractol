@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:22:32 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/08 18:17:58 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:59:24 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	mandelbrot_init(t_fractal *fractal)
 
 	x = 0;
 	y = 0;
-	fractal->is_in = 1;
 	fractal->min.real = -2.0;
 	fractal->min.imgnr = -1.2;
 	fractal->max.real = 1.0;
@@ -41,38 +40,38 @@ void	mandelbrot(t_fractal *fractal)
 	unsigned int	y;
 	double			z_real;
 	double			z_imgnr;
-	int				is_in;
 	unsigned int	n;
 
 	y = 0;
-	x = 0;
-	while (y < HEIGHT)
+	while (++y < HEIGHT)
 	{
 		fractal->c.imgnr = fractal->max.imgnr - y * fractal->factor.imgnr;
+		x = 0;
 		while (++x < WIDTH)
 		{
 			fractal->c.real = fractal->min.real + x * fractal->factor.real;
 			z_real = fractal->c.real;
 			z_imgnr = fractal->c.imgnr;
-			is_in = 1;
+			fractal->is_in = 1;
 			n = 0;
-			while (++n < 20)
+			while (++n < fractal->max_iter)
 			{
-				if (z_real * z_real + z_imgnr * z_imgnr > 4)
+				if ((z_real * z_real) + (z_imgnr * z_imgnr) > 4)
 				{
-					is_in = 0;
+					fractal->is_in = 0;
 					printf("noir\n");
 					break ;
 				}
-			}
+				z_imgnr = 2 * z_real * z_imgnr + fractal->c.imgnr;
+				z_real = (z_real * z_real) - (z_imgnr * z_imgnr) + fractal->c.real;
+			}	
 			printf("n is : %d\n", n);
-			printf("is_in is:%d\n", is_in);
-			if (is_in)
+			printf("is_in is:%d\n", fractal->is_in);
+			if (fractal->is_in == 1)
 			{
 				img_pixel_put(fractal, x, y, set_colors(2));
 				printf("lavande\n");
 			}
 		}
-		y++;
 	}
 }

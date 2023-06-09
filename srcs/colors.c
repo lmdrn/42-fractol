@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/08 18:17:57 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:40:24 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	img_pixel_put(t_fractal *image, int x, int y, int color)
 void	render_mandelbrot(t_fractal *image)
 {
 	/* y = 0; */
-	/* mandelbrot_init(image); */
+	mandelbrot_init(image);
 	/* while (y < HEIGHT) */
 	/* { */
 	/* 	x = 0; */

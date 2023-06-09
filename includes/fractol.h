@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/08 17:57:50 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:44:58 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 # define FRACTOL_H
 
-# define WIDTH 200
-# define HEIGHT 200
+# define WIDTH 500
+# define HEIGHT 500
 
 # include <unistd.h>
 # include <stdlib.h>
