@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/09 15:40:24 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:38:18 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,34 @@ void	img_pixel_put(t_fractal *image, int x, int y, int color)
 
 void	render_mandelbrot(t_fractal *image)
 {
-	/* y = 0; */
 	mandelbrot_init(image);
-	/* while (y < HEIGHT) */
-	/* { */
-	/* 	x = 0; */
-	/* 	while (x < WIDTH) */
-	/* 	{ */
-			mandelbrot(image);
-			/* x++; */
-		/* } */
-		/* y++; */
-	/* } */
+	mandelbrot(image);
+}
+
+void	render_julia(t_fractal *image)
+{
+	julia_init(image);
+	julia(image);
 }
 
 int	set_colors(int color)
 {
-	int			baby_blue;
-	int			lavender;
 	int			white;
-	int			pastel_green;
+	int			lavender;
+	int			lavender2;
+	int			lavender3;
+	int			black;
 
 	if (color == 1)
-		return (baby_blue = create_trgb(0, 173, 193, 255));
+		return (lavender = create_trgb(200, 218, 187, 255));
 	else if (color == 2)
-		return (lavender = create_trgb(0, 218, 187, 255));
+		return (lavender2 = create_trgb(100, 218, 187, 255));
 	else if (color == 3)
+		return (lavender3 = create_trgb(0, 218, 187, 255));
+	else if (color == 4)
 		return (white = create_trgb(0, 255, 255, 255));
+	else if (color == 5)
+		return (black = create_trgb(0, 0, 0, 0));
 	else
-		return (pastel_green = create_trgb(0, 201, 237, 191));
+		return (0);
 }

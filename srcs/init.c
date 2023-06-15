@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/08 15:53:24 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:33:09 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ void	init_window(int fractal)
 			&image.line_length, &image.endian);
 	if (fractal == 1)
 		render_mandelbrot(&image);
+	else if (fractal == 2)
+		render_julia(&image);
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
-	printf("coucouf\n");
 	mlx_key_hook(image.mlx_win, close_esc, &image);
-	printf("coucoug\n");
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
-	printf("coucouh\n");
 	mlx_loop(image.mlx);
 }	
 
@@ -70,7 +69,6 @@ void	no_input(void)
 }
 
 /* mlx_new_image is fct used x mem allocation x img; */
-/* TODO: Create algo for each fractal and replace set_colors(); */
 int	main(int ac, char **av)
 {
 	if (ac == 2)

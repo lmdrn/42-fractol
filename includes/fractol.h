@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/09 15:44:58 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:30:44 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ typedef struct s_fractal
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	int				x;
+	int				y;
 	unsigned int	max_iter;
 	int				is_in;
+	unsigned int	t;
 	t_complex		min;
 	t_complex		max;
 	t_complex		factor;
 	t_complex		c;
+	t_complex		k;
 }		t_fractal;
 
 /* PROTOTYPES DE FUNCTIONS */
@@ -52,6 +56,7 @@ typedef struct s_fractal
 int		create_trgb(int t, int r, int g, int b);
 void	img_pixel_put(t_fractal *image, int x, int y, int color);
 void	render_mandelbrot(t_fractal *image);
+void	render_julia(t_fractal *image);
 int		set_colors(int color);
 
 /* hooks */
@@ -61,5 +66,9 @@ int		close_btn(t_fractal *fractal);
 /* fractals */
 void	mandelbrot_init(t_fractal *fractal);
 void	mandelbrot(t_fractal *fractal);
+void	mandelbrot_iter(t_fractal *fractal, double z_real, double z_imgnr);
+void	julia_init(t_fractal *fractal);
+void	julia(t_fractal *fractal);
+void	julia_iter(t_fractal *fractal, double z_real, double z_imgnr);
 
 #endif
