@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/15 13:33:09 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:21:54 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_window(int fractal)
 		render_julia(&image);
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
 	mlx_key_hook(image.mlx_win, close_esc, &image);
+	mlx_mouse_hook(image.mlx_win, mouse_hook, &image);
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
 	mlx_loop(image.mlx);
 }	

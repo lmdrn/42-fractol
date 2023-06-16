@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 15:10:04 by lmedrano          #+#    #+#              #
-#    Updated: 2023/06/15 17:23:54 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/06/16 16:26:17 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ GREEN 		= \033[38;5;82m
 RESET 		= \033[0m
 
 SRCS 		= srcs/init.c \
-		  	srcs/fractals.c \
+		  	srcs/mandelbrot.c \
+		  	srcs/julia.c \
 			srcs/colors.c \
 			srcs/hooks.c 
 
