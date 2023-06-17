@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/16 17:15:41 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:35:38 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,17 @@ void	img_pixel_put(t_fractal *image, int x, int y, int color)
 	}
 }
 
-void	render_mandelbrot(t_fractal *image)
+int	set_colors(int color, unsigned int count)
 {
-	mandelbrot_init(image);
-	mandelbrot(image);
-}
-
-void	render_julia(t_fractal *image)
-{
-	julia_init(image);
-	julia(image);
-}
-
-int	set_colors(int color)
-{
-	int			white;
 	int			lavender;
-	int			lavender2;
-	int			lavender3;
+	int			white;
 	int			black;
 
 	if (color == 1)
-		return (lavender = create_trgb(200, 218, 187, 255));
+		return (lavender = create_trgb(count *= count, 218, 187, 255));
 	else if (color == 2)
-		return (lavender2 = create_trgb(100, 218, 187, 255));
-	else if (color == 3)
-		return (lavender3 = create_trgb(0, 218, 187, 255));
-	else if (color == 4)
 		return (white = create_trgb(0, 255, 255, 255));
-	else if (color == 5)
+	else if (color == 3)
 		return (black = create_trgb(0, 0, 0, 0));
 	else
 		return (0);

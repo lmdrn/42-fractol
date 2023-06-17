@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/16 17:21:54 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:22:44 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	init_window(int fractal)
 {
-	int			x;
-	int			y;
 	t_fractal	image;
 
-	x = 0;
-	y = 0;
 	image.mlx = mlx_init();
 	image.mlx_win = mlx_new_window(image.mlx, WIDTH, HEIGHT, "FRACT'OL");
 	image.img = mlx_new_image(image.mlx, WIDTH, HEIGHT);
@@ -30,6 +26,8 @@ void	init_window(int fractal)
 	else if (fractal == 2)
 		render_julia(&image);
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
+	mlx_string_put(image.mlx, image.mlx_win, 0,
+		0, set_colors(2, 0), "To exit press  : [ESC]");
 	mlx_key_hook(image.mlx_win, close_esc, &image);
 	mlx_mouse_hook(image.mlx_win, mouse_hook, &image);
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
@@ -67,6 +65,9 @@ void	no_input(void)
 	write(1, "------------------------------------------------\n", 50);
 	write(1, "Hmmm... I think you forgot to add a fractal name\n", 50);
 	write(1, "------------------------------------------------\n", 50);
+	write(1, "Usage: ./fractol FractalNameHere. ex: ./fractol mandelbrot\n", 59);
+	write(1, "------------------------------------------------\n", 50);
+	write(1, "----- [mandelbrot] [julia] [burning ship] ------\n", 50);
 }
 
 /* mlx_new_image is fct used x mem allocation x img; */
@@ -77,7 +78,7 @@ int	main(int ac, char **av)
 		if (ft_strncmp(av[1], "mandelbrot", 10) == 0)
 			init_window(1);
 		else if (ft_strncmp(av[1], "julia", 5) == 0)
-			init_window(0);
+			init_window(2);
 		else if (ft_strncmp(av[1], "burning ship", 12) == 0)
 			init_window(0);
 		else
@@ -94,6 +95,7 @@ int	main(int ac, char **av)
 	else
 	{
 		no_input();
+		exit(0);
 	}
 	return (0);
 }

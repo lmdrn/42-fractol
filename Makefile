@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 15:10:04 by lmedrano          #+#    #+#              #
-#    Updated: 2023/06/16 16:26:17 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/06/17 18:19:11 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS 		= srcs/init.c \
 		  	srcs/mandelbrot.c \
 		  	srcs/julia.c \
 			srcs/colors.c \
+			srcs/fractals.c \
+			srcs/zoom.c \
 			srcs/hooks.c 
 
 OBJS 		= ${SRCS:.c=.o}
@@ -57,7 +59,7 @@ header:
 
 test:		all
 			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
-			./${NAME} mandelbrot
+			./${NAME} julia
 		
 
 clean:		
