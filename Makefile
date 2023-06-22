@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 15:10:04 by lmedrano          #+#    #+#              #
-#    Updated: 2023/06/17 18:19:11 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/06/22 13:38:34 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ header:
 
 test:		all
 			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
-			./${NAME} julia
+			./${NAME} mandelbrot
 		
 
 clean:		

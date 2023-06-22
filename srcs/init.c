@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/17 18:22:44 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:37:58 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_window(int fractal)
 		render_julia(&image);
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
 	mlx_string_put(image.mlx, image.mlx_win, 0,
-		0, set_colors(2, 0), "To exit press  : [ESC]");
+		0, set_colors(2), "To exit press  : [ESC]");
 	mlx_key_hook(image.mlx_win, close_esc, &image);
 	mlx_mouse_hook(image.mlx_win, mouse_hook, &image);
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
@@ -54,48 +54,39 @@ void	fractal_typo(void)
 {
 	write(1, "------------------------------------------------\n", 50);
 	write(1, "it looks ike you've got a typo bro... try again.\n", 50);
-	write(1, "------------------------------------------------\n", 50);
-	write(1, "Launch the command  <make ./fractol> followed by\n", 50);
-	write(1, "-----  mandelbrot || julia || burning ship -----\n", 50);
+	write(1, "Launch the command <make ./fractol> followed by:\n", 50);
+	write(1, "------------- [mandelbrot] [julia] -------------\n", 50);
 	write(1, "------------------------------------------------\n", 50);
 }
 
 void	no_input(void)
 {
 	write(1, "------------------------------------------------\n", 50);
-	write(1, "Hmmm... I think you forgot to add a fractal name\n", 50);
+	write(1, "------------------ Wrong input -----------------\n", 50);
+	write(1, "------- Usage: ./fractol [FractalNameHere] -----\n", 50);
+	write(1, "------------- [mandelbrot] [julia] -------------\n", 50);
 	write(1, "------------------------------------------------\n", 50);
-	write(1, "Usage: ./fractol FractalNameHere. ex: ./fractol mandelbrot\n", 59);
-	write(1, "------------------------------------------------\n", 50);
-	write(1, "----- [mandelbrot] [julia] [burning ship] ------\n", 50);
 }
 
 /* mlx_new_image is fct used x mem allocation x img; */
 int	main(int ac, char **av)
 {
-	if (ac == 2)
+	if (ac != 2)
+	{
+		no_input();
+		exit(0);
+	}
+	else
 	{
 		if (ft_strncmp(av[1], "mandelbrot", 10) == 0)
 			init_window(1);
 		else if (ft_strncmp(av[1], "julia", 5) == 0)
 			init_window(2);
-		else if (ft_strncmp(av[1], "burning ship", 12) == 0)
-			init_window(0);
 		else
 		{
 			fractal_typo();
+			exit(0);
 		}
-	}
-	else if (ac == 3)
-	{
-		if ((ft_strncmp(av[1], "burning", 7) == 0)
-			&& (ft_strncmp(av[2], "ship", 4) == 0))
-			init_window(0);
-	}
-	else
-	{
-		no_input();
-		exit(0);
 	}
 	return (0);
 }

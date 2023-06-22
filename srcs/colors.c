@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/17 18:35:38 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:13:09 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,21 @@ void	img_pixel_put(t_fractal *image, int x, int y, int color)
 	}
 }
 
-int	set_colors(int color, unsigned int count)
+int	set_colors(int color)
 {
-	int			lavender;
 	int			white;
 	int			black;
 
 	if (color == 1)
-		return (lavender = create_trgb(count *= count, 218, 187, 255));
-	else if (color == 2)
 		return (white = create_trgb(0, 255, 255, 255));
-	else if (color == 3)
+	else if (color == 2)
 		return (black = create_trgb(0, 0, 0, 0));
 	else
 		return (0);
+}
+
+int	rgb_to_int(unsigned int count, t_fractal *fractal)
+{
+	return ((count << fractal->color.r)
+		+ (count << fractal->color.g) + (count * fractal->color.b));
 }

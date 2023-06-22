@@ -6,7 +6,7 @@
 /*   By: lmedrano <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:18:38 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/17 18:08:12 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:49:01 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mandelbrot_init(t_fractal *fractal)
 
 	x = 0;
 	fractal->min.real = -2.0;
-	fractal->min.imgnr = -1.2;
+	fractal->min.imgnr = -1.5;
 	fractal->max.real = 1.0;
 	fractal->max.imgnr = fractal->min.imgnr
 		+ (fractal->max.real - fractal->min.real) * HEIGHT / WIDTH;
@@ -27,11 +27,9 @@ void	mandelbrot_init(t_fractal *fractal)
 	fractal->factor.imgnr = (fractal->max.imgnr - fractal->min.imgnr)
 		/ (HEIGHT - 1);
 	fractal->max_iter = 100;
-	fractal->c.real = fractal->min.real + (x * fractal->factor.real)
-		* fractal->zoom;
+	fractal->c.real = fractal->min.real + (x * fractal->factor.real);
 	fractal->c.imgnr = fractal->max.imgnr
-		- (fractal->max.imgnr * fractal->c.imgnr)
-		*fractal->zoom;
+		- (fractal->max.imgnr * fractal->c.imgnr);
 }
 
 void	mandelbrot_iter(t_fractal *fractal, double z_real, double z_imgnr)
@@ -53,7 +51,7 @@ void	mandelbrot_iter(t_fractal *fractal, double z_real, double z_imgnr)
 		z_real = z_real_squared - z_imgnr_squared + fractal->c.real;
 	}	
 	if (n == fractal->max_iter)
-		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(5));
+		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(2));
 	else
-		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(3));
+		img_pixel_put(fractal, fractal->x, fractal->y, rgb_to_int(n, fractal));
 }

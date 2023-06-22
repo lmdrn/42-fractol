@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:08:37 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/17 17:59:52 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:41:52 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	close_btn(t_fractal *fractal)
 	exit(0);
 	return (0);
 }
-

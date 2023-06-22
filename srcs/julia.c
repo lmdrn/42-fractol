@@ -6,7 +6,7 @@
 /*   By: lmedrano <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:16:46 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/17 18:35:34 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:54:17 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	julia_iter(t_fractal *fractal, double z_real, double z_imgnr)
 		z_real = z_real_squared - z_imgnr_squared + fractal->k.real;
 	}	
 	if (n == fractal->max_iter)
-		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(3, n));
+		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(2));
 	else
-		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(1, n));
+		img_pixel_put(fractal, fractal->x, fractal->y, rgb_to_int(n, fractal));
 }
