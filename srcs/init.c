@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/22 13:37:58 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:01:24 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ void	init_window(int fractal)
 	image.img = mlx_new_image(image.mlx, WIDTH, HEIGHT);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
 			&image.line_length, &image.endian);
-	if (fractal == 1)
-		render_mandelbrot(&image);
-	else if (fractal == 2)
-		render_julia(&image);
+	image.set = fractal;
+	render(&image);
 	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
 	mlx_string_put(image.mlx, image.mlx_win, 0,
 		0, set_colors(2), "To exit press  : [ESC]");

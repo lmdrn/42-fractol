@@ -6,22 +6,24 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:55:07 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/17 17:59:12 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:00:56 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	render_mandelbrot(t_fractal *image)
+void	render(t_fractal *image)
 {
-	mandelbrot_init(image);
-	fractal(image, 1);
-}
-
-void	render_julia(t_fractal *image)
-{
-	julia_init(image);
-	fractal(image, 2);
+	if (image->set == MANDELBROT)
+	{
+		mandelbrot_init(image);
+		fractal(image, 1);
+	}
+	else if (image->set == JULIA)
+	{
+		julia_init(image);
+		fractal(image, 2);
+	}
 }
 
 void	fractal(t_fractal *fractal, int set)
