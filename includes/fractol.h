@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 14:24:42 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:57:33 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # include <math.h>
 # include "../mlx/mlx.h"
 
-typedef struct s_mouse
-{
-	double	real;
-	double	imgnr;
-	double	x;
-	double	y;
-}		t_mouse;
+/* typedef struct s_mouse */
+/* { */
+/* 	double	real; */
+/* 	double	imgnr; */
+/* 	double	x; */
+/* 	double	y; */
+/* }		t_mouse; */
 
 typedef struct s_complex
 {
@@ -66,11 +66,16 @@ typedef struct s_fractal
 	t_complex		c;
 	t_complex		k;
 	t_color			color;
-	double			zoom;
 	int				set;
+	double			zoom;
+	int				is_up;
+	int				is_pressed;
 }		t_fractal;
 
 /* PROTOTYPES DE FUNCTIONS */
+
+/* init */
+void	init_window(int fractal);
 
 /* colors */
 int		create_trgb(int t, int r, int g, int b);
@@ -82,7 +87,7 @@ int		rgb_to_int(unsigned int count, t_fractal *fractal);
 /* hooks */
 int		close_esc(int keycode, t_fractal *fractal);
 int		close_btn(t_fractal *fractal);
-int		mouse_hook(int mouse_code, t_fractal *fractal, t_mouse *mouse);
+int		mouse_hook(int keycode, t_fractal *fractal);
 
 /* fractals */
 void	fractal(t_fractal *fractal, int set);

@@ -6,7 +6,7 @@
 /*   By: lmedrano <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:18:38 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 14:28:41 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:09:42 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	mandelbrot_init(t_fractal *fractal)
 	fractal->max_iter = 100;
 	fractal->c.real = fractal->min.real + (x * fractal->factor.real);
 	fractal->c.imgnr = fractal->max.imgnr
-		- (fractal->max.imgnr * fractal->c.imgnr);
+		- (fractal->max.imgnr * fractal->c.imgnr) * fractal->zoom;
 }
 
 void	mandelbrot_iter(t_fractal *fractal, double z_real, double z_imgnr)
