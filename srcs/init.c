@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 12:01:24 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:41:09 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_window(int fractal)
 		0, set_colors(2), "To exit press  : [ESC]");
 	mlx_key_hook(image.mlx_win, close_esc, &image);
 	mlx_mouse_hook(image.mlx_win, mouse_hook, &image);
+	mlx_hook(image.mlx_win, 4, 1L << 2, &mouse_hook, &image);
 	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
 	mlx_loop(image.mlx);
 }	

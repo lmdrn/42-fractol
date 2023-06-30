@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 12:00:38 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:24:42 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # include <stdio.h>
 # include <math.h>
 # include "../mlx/mlx.h"
+
+typedef struct s_mouse
+{
+	double	real;
+	double	imgnr;
+	double	x;
+	double	y;
+}		t_mouse;
 
 typedef struct s_complex
 {
@@ -74,7 +82,7 @@ int		rgb_to_int(unsigned int count, t_fractal *fractal);
 /* hooks */
 int		close_esc(int keycode, t_fractal *fractal);
 int		close_btn(t_fractal *fractal);
-int		mouse_hook(int mouse_code, t_fractal *fractal);
+int		mouse_hook(int mouse_code, t_fractal *fractal, t_mouse *mouse);
 
 /* fractals */
 void	fractal(t_fractal *fractal, int set);
