@@ -6,7 +6,7 @@
 /*   By: lmedrano <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:16:46 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/22 12:54:17 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/02 14:10:54 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ void	julia_init(t_fractal *fractal)
 	int	x;
 
 	x = 0;
-	fractal->min.real = -2.0;
-	fractal->min.imgnr = -2.0;
-	fractal->max.real = 2.0;
-	fractal->max.imgnr = fractal->min.imgnr
-		+ (fractal->max.real - fractal->min.real) * HEIGHT / WIDTH;
-	fractal->factor.real = (fractal->max.real - fractal->min.real)
+	fractal->min_real = -2.0;
+	fractal->min_imgnr = -2.0;
+	fractal->max_real = 2.0;
+	fractal->max_imgnr = fractal->min_imgnr
+		+ (fractal->max_real - fractal->min_real) * HEIGHT / WIDTH;
+	fractal->factor_real = (fractal->max_real - fractal->min_real)
 		/ (WIDTH - 1);
-	fractal->factor.imgnr = (fractal->max.imgnr - fractal->min.imgnr)
+	fractal->factor_imgnr = (fractal->max_imgnr - fractal->min_imgnr)
 		/ (HEIGHT - 1);
 	fractal->max_iter = 30;
-	fractal->c.real = fractal->min.real + (x * fractal->factor.real);
-	fractal->c.imgnr = fractal->max.imgnr
-		- (fractal->max.imgnr * fractal->c.imgnr);
-	fractal->k.real = -0.2;
-	fractal->k.imgnr = -0.7;
+	fractal->c_real = fractal->min_real + (x * fractal->factor_real);
+	fractal->c_imgnr = fractal->max_imgnr
+		- (fractal->max_imgnr * fractal->c_imgnr);
+	fractal->k_real = -0.2;
+	fractal->k_imgnr = -0.7;
 }
 
 void	julia_iter(t_fractal *fractal, double z_real, double z_imgnr)
@@ -50,8 +50,8 @@ void	julia_iter(t_fractal *fractal, double z_real, double z_imgnr)
 		{
 			break ;
 		}
-		z_imgnr = 2 * z_real * z_imgnr + fractal->k.imgnr;
-		z_real = z_real_squared - z_imgnr_squared + fractal->k.real;
+		z_imgnr = 2 * z_real * z_imgnr + fractal->k_imgnr;
+		z_real = z_real_squared - z_imgnr_squared + fractal->k_real;
 	}	
 	if (n == fractal->max_iter)
 		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(2));

@@ -25,27 +25,19 @@
 # include <math.h>
 # include "../mlx/mlx.h"
 
-/* typedef struct s_mouse */
+/* typedef struct s_complex */
 /* { */
 /* 	double	real; */
 /* 	double	imgnr; */
-/* 	double	x; */
-/* 	double	y; */
-/* }		t_mouse; */
+/* }		t_complex; */
 
-typedef struct s_complex
-{
-	double	real;
-	double	imgnr;
-}		t_complex;
-
-typedef struct s_color
-{
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-	unsigned int	t;
-}		t_color;
+/* typedef struct s_color */
+/* { */
+/* 	unsigned int	r; */
+/* 	unsigned int	g; */
+/* 	unsigned int	b; */
+/* 	unsigned int	t; */
+/* }		t_color; */
 
 typedef struct s_fractal
 {
@@ -59,23 +51,27 @@ typedef struct s_fractal
 	int				x;
 	int				y;
 	unsigned int	max_iter;
-	int				is_in;
-	t_complex		min;
-	t_complex		max;
-	t_complex		factor;
-	t_complex		c;
-	t_complex		k;
-	t_color			color;
+	double			min_real;
+	double			max_real;
+	double			min_imgnr;
+	double			max_imgnr;
+	double			c_real;
+	double			c_imgnr;
+	double			k_real;
+	double			k_imgnr;
+	double			factor_real;
+	double			factor_imgnr;
 	int				set;
+	int				color_r;
+	int				color_g;
+	int				color_b;
 	double			zoom;
-	int				is_up;
-	int				is_pressed;
 }		t_fractal;
 
 /* PROTOTYPES DE FUNCTIONS */
 
 /* init */
-void	init_window(int fractal);
+void	init_window(int fractal, t_fractal *image);
 
 /* colors */
 int		create_trgb(int t, int r, int g, int b);

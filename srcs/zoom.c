@@ -18,13 +18,14 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *image)
 	(void)y;
 	if (keycode == 4)
 	{
+		update_f(fractal, 0.90);
 		printf("up\n");
 		printf("%f\n", image->c.real);
 		image->c.real *= 0.5;
 		printf("%f\n", image->c.real);
 		image->c.imgnr *= 0.5;
 	}
-	else if (keycode == 5)
+	if (keycode == 5)
 	{
 		printf("down\n");
 		printf("%f\n", image->c.real);
@@ -32,5 +33,6 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *image)
 		printf("%f\n", image->c.real);
 		image->c.imgnr /= 0.5;
 	}
+	render(fractal);
 	return (0);
 }
