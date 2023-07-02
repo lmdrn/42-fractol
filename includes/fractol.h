@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 15:57:33 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/02 15:01:26 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		rgb_to_int(unsigned int count, t_fractal *fractal);
 /* hooks */
 int		close_esc(int keycode, t_fractal *fractal);
 int		close_btn(t_fractal *fractal);
-int		mouse_hook(int keycode, t_fractal *fractal);
+int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 
 /* fractals */
 void	fractal(t_fractal *fractal, int set);
