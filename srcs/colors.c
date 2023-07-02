@@ -6,11 +6,12 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:03:08 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/22 13:13:09 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/02 14:23:40 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
 /* convert colors from rgb to hexadecimal */
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -53,6 +54,6 @@ int	set_colors(int color)
 
 int	rgb_to_int(unsigned int count, t_fractal *fractal)
 {
-	return ((count << fractal->color.r)
-		+ (count << fractal->color.g) + (count * fractal->color.b));
+	return ((count << fractal->color_r)
+		+ (count << fractal->color_g) + (count * fractal->color_b));
 }

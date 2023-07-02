@@ -6,31 +6,30 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:10:29 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 16:46:49 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/02 14:24:36 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	init_window(int fractal)
+void	init_window(int fractal, t_fractal *image)
 {
-	t_fractal	image;
-
-	/* image = malloc(sizeof(t_fractal)); */
-	image.mlx = mlx_init();
-	image.mlx_win = mlx_new_window(image.mlx, WIDTH, HEIGHT, "FRACT'OL");
-	image.img = mlx_new_image(image.mlx, WIDTH, HEIGHT);
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
-			&image.line_length, &image.endian);
-	image.set = fractal;
-	render(&image);
-	mlx_put_image_to_window(image.mlx, image.mlx_win, image.img, 0, 0);
-	mlx_string_put(image.mlx, image.mlx_win, 0,
-		0, set_colors(2), "To exit press  : [ESC]");
-	mlx_key_hook(image.mlx_win, close_esc, &image);
-	mlx_mouse_hook(image.mlx_win, mouse_hook, &image);
-	mlx_hook(image.mlx_win, 17, 0, close_btn, &image);
-	mlx_loop(image.mlx);
+	image->mlx = mlx_init();
+	image->mlx_win = mlx_new_window(image->mlx, WIDTH, HEIGHT, "FRACT'OL");
+	image->img = mlx_new_image(image->mlx, WIDTH, HEIGHT);
+	image->addr = mlx_get_data_addr(image->img, &image->bits_per_pixel,
+			&image->line_length, &image->endian);
+	image->set = fractal;
+	image->max_real = 2.0;
+	image->min_real = -2.0 * ((double)WIDTH / (double)HEIGHT);
+	image->min_imgnr = -2.0;
+	image->max_imgnr = image->min_imgnr + (image->max_real - image->min_real)
+		* HEIGHT / WIDTH;
+	image->x = 0;
+	image->y = 0;
+	image->color_r = 1;
+	image->color_g = 0;
+	image->color_b = 1;
 }	
 
 int	ft_strncmp(const char *s1, const char *s2, size_t nbytes)
@@ -70,6 +69,8 @@ void	no_input(void)
 /* mlx_new_image is fct used x mem allocation x img; */
 int	main(int ac, char **av)
 {
+	t_fractal	fractal;
+
 	if (ac != 2)
 	{
 		no_input();
@@ -78,14 +79,19 @@ int	main(int ac, char **av)
 	else
 	{
 		if (ft_strncmp(av[1], "mandelbrot", 10) == 0)
-			init_window(1);
+			init_window(1, &fractal);
 		else if (ft_strncmp(av[1], "julia", 5) == 0)
-			init_window(2);
+			init_window(2, &fractal);
 		else
 		{
 			fractal_typo();
 			exit(0);
 		}
 	}
+	render(&fractal);
+	mlx_key_hook(fractal.mlx_win, close_esc, &fractal);
+	mlx_mouse_hook(fractal.mlx_win, mouse_hook, &fractal);
+	mlx_hook(fractal.mlx_win, 17, 0, close_btn, &fractal);
+	mlx_loop(fractal.mlx);
 	return (0);
 }

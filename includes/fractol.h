@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:57:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/30 15:57:33 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/02 14:16:33 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,19 @@
 # include <math.h>
 # include "../mlx/mlx.h"
 
-/* typedef struct s_mouse */
+/* typedef struct s_complex */
 /* { */
 /* 	double	real; */
 /* 	double	imgnr; */
-/* 	double	x; */
-/* 	double	y; */
-/* }		t_mouse; */
+/* }		t_complex; */
 
-typedef struct s_complex
-{
-	double	real;
-	double	imgnr;
-}		t_complex;
-
-typedef struct s_color
-{
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-	unsigned int	t;
-}		t_color;
+/* typedef struct s_color */
+/* { */
+/* 	unsigned int	r; */
+/* 	unsigned int	g; */
+/* 	unsigned int	b; */
+/* 	unsigned int	t; */
+/* }		t_color; */
 
 typedef struct s_fractal
 {
@@ -59,23 +51,27 @@ typedef struct s_fractal
 	int				x;
 	int				y;
 	unsigned int	max_iter;
-	int				is_in;
-	t_complex		min;
-	t_complex		max;
-	t_complex		factor;
-	t_complex		c;
-	t_complex		k;
-	t_color			color;
+	double			min_real;
+	double			max_real;
+	double			min_imgnr;
+	double			max_imgnr;
+	double			c_real;
+	double			c_imgnr;
+	double			k_real;
+	double			k_imgnr;
+	double			factor_real;
+	double			factor_imgnr;
 	int				set;
+	int				color_r;
+	int				color_g;
+	int				color_b;
 	double			zoom;
-	int				is_up;
-	int				is_pressed;
 }		t_fractal;
 
 /* PROTOTYPES DE FUNCTIONS */
 
 /* init */
-void	init_window(int fractal);
+void	init_window(int fractal, t_fractal *image);
 
 /* colors */
 int		create_trgb(int t, int r, int g, int b);
@@ -87,7 +83,7 @@ int		rgb_to_int(unsigned int count, t_fractal *fractal);
 /* hooks */
 int		close_esc(int keycode, t_fractal *fractal);
 int		close_btn(t_fractal *fractal);
-int		mouse_hook(int keycode, t_fractal *fractal);
+int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 
 /* fractals */
 void	fractal(t_fractal *fractal, int set);
