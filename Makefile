@@ -6,7 +6,7 @@
 #    By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 15:10:04 by lmedrano          #+#    #+#              #
-#    Updated: 2023/07/05 18:34:16 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/07/05 19:02:50 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +56,9 @@ header:
 			@echo "$(BLUE)         |_/\_____/\_|  |_/\__,_|_|\_\___|......I'm so badass wesh $(RESET)"
 			@echo "$(BLUE)                           $(RESET)"
 
-test:		all
-			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
-			./${NAME} mandelbrot
+# test:		all
+# 			$(CC) $(OBJS) $(CFLAGS) -I ${LIB} -o $(NAME) $(MLXFLAGS)
+# 			./${NAME} mandelbrot
 		
 
 clean:		
