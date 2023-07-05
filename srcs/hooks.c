@@ -3,33 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 17:08:37 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/06/22 13:41:52 by lmedrano         ###   ########.fr       */
+/*   Created: 2023/07/05 18:37:10 by lmedrano          #+#    #+#             */
+/*   Updated: 2023/07/05 18:37:12 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#include <unistd.h>
 
-/* fct to close window with esc key*/
 int	close_esc(int keycode, t_fractal *fractal)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_image(fractal->mlx, fractal->img);
-		mlx_destroy_window(fractal->mlx, fractal->mlx_win);
+		mlx_clear_window(fractal->mlx, fractal->mlx_win);
 		exit(0);
 	}
 	return (0);
 }
 
-/* fct to close window with close btn */
 int	close_btn(t_fractal *fractal)
 {
-	mlx_destroy_image(fractal->mlx, fractal->img);
-	mlx_destroy_window(fractal->mlx, fractal->mlx_win);
+	mlx_clear_window(fractal->mlx, fractal->mlx_win);
 	exit(0);
+	return (0);
+}
+
+int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
+{
+	(void)x;
+	(void)y;
+	if (keycode == 4)
+		fractal->zoom /= 0.8;
+	if (keycode == 5)
+		fractal->zoom *= 0.8;
+	mlx_clear_window(fractal->mlx, fractal->mlx_win);
+	if (fractal->set == MANDELBROT)
+		fractal_mandelbrot(fractal);
+	if (fractal->set == JULIA)
+		fractal_julia(fractal);
+	mlx_put_image_to_window(fractal->mlx, fractal->mlx_win, fractal->img, 0, 0);
 	return (0);
 }

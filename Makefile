@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmedrano <lmedrano@student.42lausanne.ch>  +#+  +:+       +#+         #
+#    By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 15:10:04 by lmedrano          #+#    #+#              #
-#    Updated: 2023/06/22 13:38:34 by lmedrano         ###   ########.fr        #
+#    Updated: 2023/07/05 18:34:16 by lmedrano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ SRCS 		= srcs/init.c \
 		  	srcs/mandelbrot.c \
 		  	srcs/julia.c \
 			srcs/colors.c \
-			srcs/fractals.c \
-			srcs/zoom.c \
+			srcs/misc.c \
 			srcs/hooks.c 
 
 OBJS 		= ${SRCS:.c=.o}

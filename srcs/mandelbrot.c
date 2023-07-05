@@ -3,53 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmedrano <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 16:18:38 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/07/02 13:58:43 by lmedrano         ###   ########.fr       */
+/*   Created: 2023/07/05 18:35:15 by lmedrano          #+#    #+#             */
+/*   Updated: 2023/07/05 18:36:45 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	mandelbrot_init(t_fractal *fractal)
+int	mandelbrot_iter(t_fractal *fractal)
 {
-	int	x;
-
-	x = 0;
-	fractal->min_real = -2.0;
-	fractal->min_imgnr = -1.5;
-	fractal->max_real = 1.0;
-	fractal->max_imgnr = fractal->min_imgnr
-		+ (fractal->max_real - fractal->min_real) * HEIGHT / WIDTH;
-	fractal->factor_real = (fractal->max_real - fractal->min_real)
-		/ (WIDTH - 1);
-	fractal->factor_imgnr = (fractal->max_imgnr - fractal->min_imgnr)
-		/ (HEIGHT - 1);
-	fractal->max_iter = 100;
-	fractal->c_real = fractal->min_real + (x * fractal->factor_real);
-	fractal->c_imgnr = fractal->max_imgnr
-		- (fractal->max_imgnr * fractal->c_imgnr);
+	fractal->c_real = (fractal->i - WIDTH / 2.0)
+		* fractal->zoom / WIDTH + fractal->x;
+	fractal->c_imgnr = (fractal->j - HEIGHT / 2.0)
+		* fractal->zoom / HEIGHT + fractal->y;
+	while (fractal->n < 100 && fractal->real * fractal->real
+		+ fractal->imgnr * fractal->imgnr < 4)
+	{
+		fractal->tmp = fractal->real * fractal->real
+			- fractal->imgnr * fractal->imgnr + fractal->c_real;
+		fractal->imgnr = 2 * fractal->real * fractal->imgnr + fractal->c_imgnr;
+		fractal->real = fractal->tmp;
+		fractal->n++;
+	}
+	return (fractal->n);
 }
 
-void	mandelbrot_iter(t_fractal *fractal, double z_real, double z_imgnr)
+void	fractal_mandelbrot(t_fractal *fractal)
 {
-	double			z_imgnr_squared;
-	double			z_real_squared;
-	unsigned int	n;
-
-	n = 0;
-	while (++n < fractal->max_iter)
+	fractal->i = 0;
+	while (fractal->i < WIDTH)
 	{
-		z_real_squared = z_real * z_real;
-		z_imgnr_squared = z_imgnr * z_imgnr;
-		if ((z_real_squared + z_imgnr_squared) > 4)
-			break ;
-		z_imgnr = 2 * z_real * z_imgnr + fractal->c_imgnr;
-		z_real = z_real_squared - z_imgnr_squared + fractal->c_real;
-	}	
-	if (n == fractal->max_iter)
-		img_pixel_put(fractal, fractal->x, fractal->y, set_colors(2));
-	else
-		img_pixel_put(fractal, fractal->x, fractal->y, rgb_to_int(n, fractal));
+		fractal->j = 0;
+		while (fractal->j < HEIGHT)
+		{
+			fractal->n = 0;
+			fractal->real = 0;
+			fractal->imgnr = 0;
+			if (fractal->n < MAX_ITER)
+			{
+				color_fractal(fractal, fractal->i, fractal->j,
+					mandelbrot_iter(fractal) * 0x000f0f);
+			}
+			fractal->j++;
+		}
+		fractal->i++;
+	}
 }
