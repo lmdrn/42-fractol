@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:28 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/07/06 10:34:29 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:07:36 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int ac, char **av)
 {
 	t_fractal	fractal;
 
-	fractal.zoom = 4.0;
+	fractal.zoom = 3.0;
 	init_window(&fractal);
 	init_image(&fractal);
 	if (ac != 2)

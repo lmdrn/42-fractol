@@ -6,11 +6,13 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:43 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/07/06 10:25:49 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:24:26 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+/* others colors to test : 0x8d7bac */
 
 int	julia_iter(t_fractal *fractal)
 {

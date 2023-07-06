@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:35:15 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/07/06 10:38:25 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:12:47 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mandelbrot_iter(t_fractal *fractal)
 {
-	fractal->c_real = (fractal->i - WIDTH / 2.0)
+	fractal->c_real = (fractal->i - WIDTH / 1.45)
 		* fractal->zoom / WIDTH + fractal->x;
 	fractal->c_imgnr = (fractal->j - HEIGHT / 2.0)
 		* fractal->zoom / HEIGHT + fractal->y;
