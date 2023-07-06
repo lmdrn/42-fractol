@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:28 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/07/05 18:37:30 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/06 10:34:29 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 	{
 		no_input();
-		exit(0);
+		exit(1);
 	}
 	if (!ft_strcmp(av[1], "mandelbrot"))
 		set_fractal(1, &fractal);
@@ -66,7 +66,7 @@ int	main(int ac, char **av)
 	else
 	{
 		fractal_typo();
-		exit(0);
+		exit(1);
 	}
 	init_hooks(&fractal);
 	mlx_loop(fractal.mlx);

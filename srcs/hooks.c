@@ -6,7 +6,7 @@
 /*   By: lmedrano <lmedrano@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:37:10 by lmedrano          #+#    #+#             */
-/*   Updated: 2023/07/05 18:37:12 by lmedrano         ###   ########.fr       */
+/*   Updated: 2023/07/06 10:53:46 by lmedrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ int	close_esc(int keycode, t_fractal *fractal)
 {
 	if (keycode == 53)
 	{
-		mlx_clear_window(fractal->mlx, fractal->mlx_win);
-		exit(0);
+		mlx_destroy_window(fractal->mlx, fractal->mlx_win);
+		exit(1);
 	}
 	return (0);
 }
 
 int	close_btn(t_fractal *fractal)
 {
-	mlx_clear_window(fractal->mlx, fractal->mlx_win);
-	exit(0);
+	mlx_destroy_window(fractal->mlx, fractal->mlx_win);
+	exit(1);
 	return (0);
 }
 
